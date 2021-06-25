@@ -54,7 +54,7 @@ jobs:
         container-registry-url: ${{ env.REGISTRY_NAME }}.azurecr.io
         container-registry-username: ${{ secrets.REGISTRY_USERNAME }}
         container-registry-password: ${{ secrets.REGISTRY_PASSWORD }}
-        secret-name: anraghuncluster-registry-connection
+        secret-name: amit-registry-connection
         namespace: ${{ env.NAMESPACE }}
     
     # Deploy app to AKS
@@ -66,5 +66,5 @@ jobs:
         images: |
           ${{ env.REGISTRY_NAME }}.azurecr.io/nodejs-hello-world:${{ github.sha }}
         imagepullsecrets: |
-          anraghuncluster-registry-connection
+          amit-registry-connection
         namespace: ${{ env.NAMESPACE }}
