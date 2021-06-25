@@ -14,25 +14,25 @@ env:
   NAMESPACE: mynamespace
   
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@master
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#     - uses: actions/checkout@master
     
-    # Connect to Azure Container registry (ACR)
-    - uses: azure/docker-login@v1
-      with:
-        login-server: ${{ env.REGISTRY_NAME }}.azurecr.io
-        username: ${{ secrets.REGISTRY_USERNAME }} 
-        password: ${{ secrets.REGISTRY_PASSWORD }}
+#     # Connect to Azure Container registry (ACR)
+#     - uses: azure/docker-login@v1
+#       with:
+#         login-server: ${{ env.REGISTRY_NAME }}.azurecr.io
+#         username: ${{ secrets.REGISTRY_USERNAME }} 
+#         password: ${{ secrets.REGISTRY_PASSWORD }}
     
-    # Container build and push to a Azure Container registry (ACR)
-    - run: |
-        docker build . -t ${{ env.REGISTRY_NAME }}.azurecr.io/rshiny:${{ github.sha }}
-        docker push ${{ env.REGISTRY_NAME }}.azurecr.io/rshiny:${{ github.sha }}
+#     # Container build and push to a Azure Container registry (ACR)
+#     - run: |
+#         docker build . -t ${{ env.REGISTRY_NAME }}.azurecr.io/rshiny:${{ github.sha }}
+#         docker push ${{ env.REGISTRY_NAME }}.azurecr.io/rshiny:${{ github.sha }}
   
   deploy:
-    needs: build
+#     needs: build
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
@@ -63,7 +63,7 @@ jobs:
         manifests: |
           deployment.azure.yaml
         images: |
-          ${{ env.REGISTRY_NAME }}.azurecr.io/rshiny:${{ github.sha }}
+          ${{ env.REGISTRY_NAME }}.azurecr.io/rshiny:61dcce66717c6340102b01a2aba69f5a60cad906
         imagepullsecrets: |
           amit-registry-connection
         namespace: ${{ env.NAMESPACE }}
