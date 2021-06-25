@@ -1,0 +1,33 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2 
+kind: Deployment 
+metadata: 
+  name: rshiny 
+spec: 
+  selector: 
+    matchLabels: 
+      app: rshiny 
+  replicas: 3 # tells deployment to run 2 pods matching the template 
+  template:
+    metadata: 
+      labels: 
+        app: rshiny 
+    spec: 
+      containers: 
+      - name: rshiny 
+        image: 8juneacr.azurecr.io/amitrshinyacr
+        ports: 
+        - containerPort: 3838
+--- 
+# https://kubernetes.io/docs/concepts/services-networking/service/#defining-a-service  
+kind: Service 
+apiVersion: v1 
+metadata: 
+  name: rshiny 
+spec: 
+  selector: 
+    app: rshiny 
+  ports: 
+  - protocol: TCP 
+    port: 3838
+    targetPort: 3838
+  type: LoadBalancer 
