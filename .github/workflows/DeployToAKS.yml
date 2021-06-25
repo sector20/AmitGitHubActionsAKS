@@ -8,10 +8,10 @@ on:
   workflow_dispatch:
   
 env:
-  REGISTRY_NAME: anraghunCR
-  CLUSTER_NAME: demo-cluster
-  CLUSTER_RESOURCE_GROUP: anraghun
-  NAMESPACE: demo
+  REGISTRY_NAME: 26juneacr
+  CLUSTER_NAME: 26juneAKS
+  CLUSTER_RESOURCE_GROUP: 26JuneRG
+  NAMESPACE: mynamespace
   
 jobs:
   build:
