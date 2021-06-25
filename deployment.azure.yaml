@@ -14,7 +14,7 @@ spec:
     spec: 
       containers: 
       - name: rshiny 
-        image: 8juneacr.azurecr.io/amitrshinyacr
+        image: 26juneacr.azurecr.io/rshiny
         ports: 
         - containerPort: 3838
 --- 
